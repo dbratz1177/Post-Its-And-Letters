@@ -15,8 +15,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
-         
+         :recoverable, :rememberable, :trackable, :validatable#, :confirmable
+  #confirmable turns off the setting where users need to verify their email
+
+
   # Pagination
   paginates_per 100
   
