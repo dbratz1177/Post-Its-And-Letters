@@ -5,7 +5,45 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
+
+  #If bool is true it redirects, if not just return the path
+  def send_home(username,bool)
+    path_to_home = "/userpage/#{username}"
+    if bool
+      #redirect_to :controller => 'userpage', :action => 'home', :username => username
+      redirect_to path_to_home
+      return true
+    end
+    path_to_home
+  end
+
+  #Checks the username in the url and returns a boolean
+  def isMyPage?
+    myPage = false
+    #Might redo this to compare two user objects
+    if session[:username] == params[:username]
+      myPage = true
+    end
+    return myPage
+  end
+
+  # Redirects on successful sign in
+  def after_sign_in_path_for(resource)
+    user_setup
+    send_home(session[:username],false)
+  end
+
+  # initialization stuff for users, right after a user signs in
+  # Its hacky to put this here and in the future when we aim to
+  # really fix up the homepage we need to inherit from the devise
+  # controller and put this directly after a user signs up.
+  def user_setup
+    user = current_user
+    session[:username] = user.username
+  end
   
+  #----------------Added all the methods above-------------------
+  #--------------------------------------------------------------
 
   # Devise permitted params
   def configure_permitted_parameters
@@ -23,11 +61,6 @@ class ApplicationController < ActionController::Base
       :current_password
       ) 
     }
-  end
-  
-  # Redirects on successful sign in
-  def after_sign_in_path_for(resource)
-    inside_path
   end
   
   # Auto-sign out locked users
