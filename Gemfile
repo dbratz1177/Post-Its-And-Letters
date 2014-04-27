@@ -17,7 +17,15 @@ end
 group :development, :test do
   gem 'sqlite3', '~> 1.3.8'    # dev & test database
   gem 'figaro', '~> 0.7.0'     # env variables
+  #dev gems I added
+  gem 'annotate', ">=2.6.0"
+  gem "better_errors"
+  gem "binding_of_caller" # needed by better_errors or variable inspection 
 end
+
+# Other gems I added
+gem 'backbone-rails', '~> 1.1.0'
+gem 'underscore-rails', '~> 1.6.0'
 
 # Paging
 gem 'kaminari', '~> 0.15.0'
@@ -31,6 +39,8 @@ gem 'font-awesome-sass', '~> 4.0.2'
 # Devise
 gem 'devise', '~> 3.2.2'
 
+# Personal engines
+gem 'noteboard', path: './engines/noteboard'
 
 # Bootstrap 3
 group :development, :test do

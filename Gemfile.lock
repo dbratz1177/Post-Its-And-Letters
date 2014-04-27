@@ -1,3 +1,9 @@
+PATH
+  remote: ./engines/noteboard
+  specs:
+    noteboard (0.0.1)
+      rails (~> 4.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -25,13 +31,24 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    annotate (2.6.3)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (4.0.2)
+    backbone-rails (1.1.0)
+      rails (>= 3.0.0)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
     builder (3.1.4)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -39,6 +56,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    debug_inspector (0.0.2)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -125,6 +143,7 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    underscore-rails (1.6.0)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -132,7 +151,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (>= 2.6.0)
+  backbone-rails (~> 1.1.0)
   bcrypt-ruby (~> 3.1.2)
+  better_errors
+  binding_of_caller
   bootstrap-sass (~> 3.0.3.0)
   coffee-rails (~> 4.0.1)
   devise (~> 3.2.2)
@@ -142,6 +165,7 @@ DEPENDENCIES
   jbuilder (~> 1.5.3)
   jquery-rails (~> 3.0.4)
   kaminari (~> 0.15.0)
+  noteboard!
   rails (= 4.0.4)
   rails_layout (~> 0.5.11)
   sass-rails (~> 4.0.1)
@@ -149,3 +173,4 @@ DEPENDENCIES
   sqlite3 (~> 1.3.8)
   turbolinks (~> 2.1.0)
   uglifier (~> 2.4.0)
+  underscore-rails (~> 1.6.0)
