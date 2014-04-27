@@ -2,7 +2,16 @@ class User < ActiveRecord::Base
   # Use friendly_id on Users
   extend FriendlyId
   friendly_id :friendify, use: :slugged
-  
+  #Set some things up for the user
+  after_create :setup_user
+  has_one :noteboard, class_name: 'Noteboard::Noteboard'
+
+
+  #Do something after creating a user
+  def setup_user
+    self.create_noteboard!
+  end
+ 
   # necessary to override friendly_id reserved words
   def friendify
     if username.downcase == "admin"
