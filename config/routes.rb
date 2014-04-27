@@ -2,6 +2,10 @@ LaunchU::Application.routes.draw do
   
   root "pages#sitehome"
 
+  #Note userpage can just as easily be an id. Should maybe
+  #add support for both to be used and make a username include
+  #atleast one letter to differentiate it from ids which are
+  #purely integers
   get 'userpage/:username', to: "userpage#home"
   get 'userpage', to: "userpage#home"
 
