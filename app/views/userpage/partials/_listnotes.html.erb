@@ -1,0 +1,21 @@
+<p><%= @pageOwner.username  %>'s noteboard</p>
+<table>
+  <thead>
+    <tr>
+      <th>Noteboard</th>
+      <th>Poster</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notes.each do |note| %>
+      <tr>
+        <td><%= note.noteboard_id %></td>
+        <td><%= (User.find(note.poster_id)).username %></td>
+        <td><%= note.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

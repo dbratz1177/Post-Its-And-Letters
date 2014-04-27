@@ -6,7 +6,7 @@ LaunchU::Application.routes.draw do
   #add support for both to be used and make a username include
   #atleast one letter to differentiate it from ids which are
   #purely integers
-  get 'userpage/:username', to: "userpage#home"
+  get 'userpage/:username', to: "userpage#home", as: "home"
   get 'userpage', to: "userpage#home"
 
   #This route connects a noteboard to a userpage

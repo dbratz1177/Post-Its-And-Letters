@@ -9,6 +9,8 @@ class UserpageController < ApplicationController
     @pageOwner = homepage_setup
     @visitingUser = current_user
     @myPage = isMyPage?
+    noteBoard = @pageOwner.noteboard
+    @notes = noteBoard.notes
   end
 
   private
