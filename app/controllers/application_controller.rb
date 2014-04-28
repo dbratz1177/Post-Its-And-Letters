@@ -8,13 +8,12 @@ class ApplicationController < ActionController::Base
 
   #If bool is true it redirects, if not just return the path
   def send_home(username,bool)
-    path_to_home = "/userpage/#{username}"
     if bool
       #redirect_to :controller => 'userpage', :action => 'home', :username => username
-      redirect_to path_to_home
-      return true
+      redirect_to home_path(:username => username)
+      return
     end
-    path_to_home
+    home_path(:username => username)
   end
 
   #Checks the username in the url and returns a boolean

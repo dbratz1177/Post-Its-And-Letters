@@ -7,6 +7,10 @@ class UserpageController < ApplicationController
 
   def home
     @pageOwner = homepage_setup
+    if @pageOwner.nil?
+      send_home(session[:username],true)
+      return
+    end
     @visitingUser = current_user
     @myPage = isMyPage?
     noteBoard = @pageOwner.noteboard
@@ -17,12 +21,12 @@ class UserpageController < ApplicationController
 
   def homepage_setup
     if params[:username].nil?
-      send_home(session[:username],true) and return
+      return nil
     end
     owner = User.find_by(username: params[:username])
     if owner.nil?
       flash[:error] = "Sorry, that users page doesn't exist"
-      send_home(session[:username],true) and return
+      return nil
     end
     owner
   end
