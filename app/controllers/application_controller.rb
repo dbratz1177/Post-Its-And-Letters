@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
 
+  helper_method :send_home
   #If bool is true it redirects, if not just return the path
   def send_home(username,bool)
     if bool

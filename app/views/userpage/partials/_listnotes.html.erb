@@ -13,9 +13,10 @@
 
   <tbody>
     <% @notes.each do |note| %>
+	  <% poster = User.find(note.poster_id) %>
       <tr>
         <td><%= note.noteboard_id %></td>
-        <td><%= (User.find(note.poster_id)).username %></td>
+        <td><%= link_to "#{poster.username}", send_home(poster.username,false) %></td>
         <td><%= note.message %></td>
         <td><%= link_to 'Show', noteboard.note_path(note) %></td>
         <% if @myPage %>
