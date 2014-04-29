@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
 
+  def myRenderer(format,obj)
+    format.json {render :json=>obj}
+    format.html
+  end
+
   #Checks the username in the url and returns a boolean
   def isMyPage?
     myPage = false
