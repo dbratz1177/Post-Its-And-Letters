@@ -6,17 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
 
-  helper_method :send_home
-  #If bool is true it redirects, if not just return the path
-  def send_home(username,bool)
-    if bool
-      #redirect_to :controller => 'userpage', :action => 'home', :username => username
-      redirect_to home_path(:username => username)
-      return
-    end
-    home_path(:username => username)
-  end
-
   #Checks the username in the url and returns a boolean
   def isMyPage?
     myPage = false
@@ -30,7 +19,7 @@ class ApplicationController < ActionController::Base
   # Redirects on successful sign in
   def after_sign_in_path_for(resource)
     user_setup
-    send_home(session[:username],false)
+    main_app.home_path(session[:username])
   end
 
   # initialization stuff for users, right after a user signs in

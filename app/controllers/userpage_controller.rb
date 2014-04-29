@@ -4,11 +4,10 @@ class UserpageController < ApplicationController
   #For now, made the homepage only accessible to people who
   #are signed in. Done in the filter above.
 
-
   def home
     @pageOwner = homepage_setup
     if @pageOwner.nil?
-      send_home(session[:username],true)
+      redirect_to main_app.home_path(session[:username])
       return
     end
     @visitingUser = current_user
