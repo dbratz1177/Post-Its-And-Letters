@@ -1,10 +1,13 @@
-<p><%= @pageOwner.username  %>'s noteboard</p>
+<h2><%= @pageOwner.username.capitalize  %>'s noteboard</h2>
 <table>
   <thead>
     <tr>
-      <th>Noteboard</th>
+      <th>Noteboard_ID</th>
       <th>Poster</th>
       <th>Message</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -14,6 +17,11 @@
         <td><%= note.noteboard_id %></td>
         <td><%= (User.find(note.poster_id)).username %></td>
         <td><%= note.message %></td>
+        <td><%= link_to 'Show', noteboard.note_path(note) %></td>
+        <% if @myPage %>
+			<td><%= link_to 'Edit', noteboard.edit_note_path(note) %></td>
+			<td><%= link_to 'Destroy', noteboard.note_path(note), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

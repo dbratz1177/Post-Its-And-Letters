@@ -13,8 +13,12 @@ class UserpageController < ApplicationController
     end
     @visitingUser = current_user
     @myPage = isMyPage?
-    noteBoard = @pageOwner.noteboard
-    @notes = noteBoard.notes
+    @noteBoard = @pageOwner.noteboard
+    @notes = @noteBoard.notes
+    #Used in the hidden fields
+    @note = Noteboard::Note.new
+    @note.poster_id = @visitingUser.id
+    @note.noteboard_id = @noteBoard.id
   end
 
   private

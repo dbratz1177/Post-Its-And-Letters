@@ -1,37 +1,20 @@
 LaunchU::Application.routes.draw do
   
+  #Since the root of the engine is set, this needs to be above
+  #all engines or else it'll match the engine first
   root "pages#sitehome"
-
-  #Note userpage can just as easily be an id. Should maybe
-  #add support for both to be used and make a username include
-  #atleast one letter to differentiate it from ids which are
-  #purely integers
   get 'userpage/:username', to: "userpage#home", as: "home"
   get 'userpage', to: "userpage#home"
 
-  #This route connects a noteboard to a userpage
-  mount Noteboard::Engine, at: '/userpage/:username(.:format)'
-  #Most of the routes that have GET can be ignored eventually
-  #since the forms will be made in the backbone app but the
-  #Ones that post are here to stay. 
-=begin
-  GET /userpage/:username/notes             notes#index
-  GET /userpage/:username/notes/new         notes#new
-  POST /userpage/:username/notes/create     notes#create
-  GET /userpage/:username/notes/:id         notes#show
-  GET /userpage/:username/notes/:id/edit    notes#edit
-  PATCH/PUT /userpage/:username/notes/:id   notes#update
-  DELETE /userpage/:username/notes/:id      notes#destroy
-=end 
-
+  mount Noteboard::Engine, at: '/'
   #get "home", to: "pages#home", as: "home"
   #This needs to be here for default user editing
   get "inside", to: "pages#inside", as: "inside"
-
+  
   devise_for :users
-
   namespace :admin do
     root "base#index"
     resources :users
   end 
+  
 end

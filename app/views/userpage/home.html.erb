@@ -1,5 +1,6 @@
-<p> username = <%= @visitingUser.username  %> </p>
-<p> page owner = <%= @pageOwner.username %> </p>
-<p> my page = <%= @myPage %> </p>
+<p> The Surfing user = <%= @visitingUser.username.capitalize  %> </p>
+<p> The page owner = <%= @pageOwner.username.capitalize %> </p>
+<p> Is this my page? = <%= @myPage %> </p>
 
 <%= render "userpage/partials/listnotes" %>
+<%= render "userpage/partials/form" %>
